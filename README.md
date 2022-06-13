@@ -6,7 +6,7 @@ In this demo we are going to explore how we can achieve this.
 
 ## Github
 
-Check out the complete source code in this   [GitHub Repository](https://github.com/874bowen/Image-Compressor.git ).
+Check out the complete source code in this   [GitHub Repository](https://github.com/874bowen/Image-Compressor.git).
 
 ## Pre-requisites
 To effectively follow along through this article you are required to have: 
