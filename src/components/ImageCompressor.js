@@ -2,7 +2,7 @@ import React from "react";
 
 import imageCompression from "browser-image-compression";
 
-import Card from "react-bootstrap/Card";
+import {Card, Button} from "react-bootstrap";
 
 class imageCompressor extends React.Component {
   constructor() {
@@ -62,7 +62,7 @@ class imageCompressor extends React.Component {
   render() {
     return (
       <div className="m-5">
-        <div className="text-light text-center">
+        <div className="text-success text-center">
           <h1>React Image Compressor</h1>
         </div>
 
@@ -85,7 +85,7 @@ class imageCompressor extends React.Component {
               <input
                 type="file"
                 accept="image/*"
-                className="mt-2 btn btn-dark w-75"
+                className="mt-2 btn btn-outline-warning w-75"
                 onChange={e => this.handle(e)}
               />
             </div>
@@ -93,13 +93,12 @@ class imageCompressor extends React.Component {
           <div className="col-xl-4 col-lg-4 col-md-12 mb-5 mt-5 col-sm-12 d-flex justify-content-center align-items-baseline">
             <br />
             {this.state.outputFileName ? (
-              <button
-                type="button"
-                className=" btn btn-dark"
+              <Button
+                variant="primary"
                 onClick={e => this.click(e)}
               >
                 Compress
-              </button>
+              </Button>
             ) : (
               <></>
             )}
@@ -112,7 +111,7 @@ class imageCompressor extends React.Component {
                 <a
                   href={this.state.compressedLink}
                   download={this.state.outputFileName}
-                  className="mt-2 btn btn-dark w-75"
+                  className="mt-2 btn btn-info w-75"
                 >
                   Download
                 </a>
