@@ -41,3 +41,52 @@ After this in your browser you should be able to see this page
 ![img.png](https://res.cloudinary.com/bowenivan/image/upload/v1655120622/img_qwy1rg.png)
 
 ## Usage
+Let's now examine the `ImageCompressor.js` component to understand how the browser-image-compression package works.
+
+### Configuring the Component's State
+Since this is a class component we are able to store the state for our component.
+```javascript
+constructor() {
+    super();
+    this.state = {
+      compressedLink:
+        "https://testersdock.com/wp-content/uploads/2017/09/file-upload-1280x640.png",
+      originalImage: "",
+      originalLink: "",
+      clicked: false,
+      uploadImage: false
+    };
+  }
+```
+
+The `compressedLink` will store the image link of the compressed image and the `originalImage` and the `originalLink` will store the values of the originalImage and originalLink respectively. The `clicked` and `uploadImage` store a boolean value which is false by default and changes to true when a button is clicked and when an image is uploaded. 
+
+### Handling the Uploaded Image
+When the Image is uploaded we want change the state of our Component. To do this we are going to call the `setState` method since we just don't change the state of the component directly. 
+
+```javascript
+<input
+    type="file"
+    accept="image/*"
+    className="mt-2 btn btn-outline-warning w-75"
+    onChange={e => this.handle(e)}
+/>
+```
+
+Once we have uploaded an image the `handle` method will be called 
+
+```javascript
+handle = e => {
+const imageFile = e.target.files[0];
+this.setState({
+  originalLink: URL.createObjectURL(imageFile),
+  originalImage: imageFile,
+  outputFileName: imageFile.name,
+  uploadImage: true
+});
+};
+```
+
+After uploading files we can access the list of uploaded files using `event.target.files` we can then get the first file since we can process at a time using `e.target.files[0]`. We can also change the state using `setState` setting the originalLink, originalImage, outputFileName and uploadImage state as shown above.
+
+> URL.createObjectURL() is a static method that creates a string that containing a URL representing the object given in the parameter. 
