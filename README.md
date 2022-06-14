@@ -90,3 +90,40 @@ this.setState({
 After uploading files we can access the list of uploaded files using `event.target.files` we can then get the first file since we can process at a time using `e.target.files[0]`. We can also change the state using `setState` setting the originalLink, originalImage, outputFileName and uploadImage state as shown above.
 
 > URL.createObjectURL() is a static method that creates a string that containing a URL representing the object given in the parameter. 
+
+### User interface 
+We will use the shorthand for if else statement, `ternary operator` to change the user interface of our application when the user has not uploaded and image and he/she has uploaded an image.
+
+```javascript
+{this.state.uploadImage ? (
+  <Card.Img
+    className="ht"
+    variant="top"
+    src={this.state.originalLink}
+  ></Card.Img>
+) : (
+  <Card.Img
+    className="ht"
+    variant="top"
+    src="https://testersdock.com/wp-content/uploads/2017/09/file-upload-1280x640.png"
+  ></Card.Img>
+)}
+```
+If the state uploadImage is `true` it would replace the image the link of the Card Image with the `originalLink` which the state changed upon uploading. Otherwise, the Card Image link will be hard coded as shown above.
+
+It is only after an image has been uploaded that we will see the compress button. 
+
+```javascript
+{this.state.outputFileName ? (
+  <Button
+    variant="primary"
+    onClick={e => this.click(e)}
+  >
+    Compress
+  </Button>
+) : (
+  <></>
+)}
+```
+
+When the image is not uploaded we don't have the state `outputFileName` hence we don't see the `compress` button. This state is set only after uploading hence returning the compress button.
