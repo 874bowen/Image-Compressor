@@ -163,7 +163,7 @@ if (options.maxSizeMB >= this.state.originalImage.size / 1024) {
 }
 ```
 `imageCompression()` is a method that takes two parameters: the originalImage and the options.
-We will have a **promise** in which when its state is fulfilled that is the `imageCompression()` returns a object `x`, compressedImage for our case. We will then create an Image URL for the compressed Image using the `URL.createObjectURL()`. We will also change the compressedLink state Compressed Image URL as shown below using `setState`.
+We will have a **promise** in which when its state is fulfilled, that is the `imageCompression()` returns a object `x`, compressedImage for our case. We will then create an Image URL for the compressed Image using the `URL.createObjectURL()`. We will also change the compressedLink state Compressed Image URL as shown below using `setState`.
 
 ```javascript
 imageCompression(this.state.originalImage, options).then(x => {
