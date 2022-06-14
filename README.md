@@ -127,3 +127,78 @@ It is only after an image has been uploaded that we will see the compress button
 ```
 
 When the image is not uploaded we don't have the state `outputFileName` hence we don't see the `compress` button. This state is set only after uploading hence returning the compress button.
+
+### Compressing the Uploaded Image
+```javascript
+const options = {
+      maxSizeMB: 2,
+      maxWidthOrHeight: 800,
+      useWebWorker: true
+    };
+
+    if (options.maxSizeMB >= this.state.originalImage.size / 1024) {
+      alert("Bring a bigger image");
+      return 0;
+    }
+
+    let output;
+    imageCompression(this.state.originalImage, options).then(x => {
+      output = x;
+
+      const downloadLink = URL.createObjectURL(output);
+      this.setState({
+        compressedLink: downloadLink
+      });
+    });
+
+    this.setState({ clicked: true });
+    return 1;
+```
+To prevent the user to upload an image less than 2mb we will check whether the maxSizeMB is greater than or equal to the originalImage size.
+
+```javascript
+if (options.maxSizeMB >= this.state.originalImage.size / 1024) {
+  alert("Bring a bigger image");
+  return 0;
+}
+```
+`imageCompression()` is a method that takes two parameters: the originalImage and the options.
+We will have a **promise** in which when its state is fulfilled that is the `imageCompression()` returns a object `x`, compressedImage for our case. We will then create an Image URL for the compressed Image using the `URL.createObjectURL()`. We will also change the compressedLink state Compressed Image URL as shown below using `setState`.
+
+```javascript
+imageCompression(this.state.originalImage, options).then(x => {
+      output = x;
+
+  const downloadLink = URL.createObjectURL(output);
+  this.setState({
+    compressedLink: downloadLink
+  });
+});
+```
+
+### Downloading the Compressed Image
+Lastly, we'll need to download the compressed image and compare it with the original image whether they are of different sizes.
+```javascript
+<Card.Img variant="top" src={this.state.compressedLink}></Card.Img>
+{this.state.clicked ? (
+  <div className="d-flex justify-content-center">
+    <a
+      href={this.state.compressedLink}
+      download={this.state.outputFileName}
+      className="mt-2 btn btn-info w-75"
+    >
+      Download
+    </a>
+  </div>
+) : (
+  <></>
+)}
+```
+Once the Download button is clicked we'll get the link of the compressed Image from our component's state then use it in the `<a>` href attribute. You will also need to add the `download` attribute to the anchor tag which will take the outputFileName.
+
+### Conclusion
+In this article we learnt how we can compress images based on their sizes offline using React and the `browser-image-compression` package without losing the physical properties. 
+
+
+
+ 
