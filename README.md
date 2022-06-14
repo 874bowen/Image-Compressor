@@ -10,7 +10,7 @@ Check out the complete source code in this   [GitHub Repository](https://github.
 
 ## Pre-requisites
 To effectively follow along through this article you are required to have: 
-- React.js basics
+- React.js basic skills
 - Basic knowledge of HTML
 - Knowledge in Javascript
 - Some knowledge in Bootstrap
@@ -87,7 +87,7 @@ this.setState({
 };
 ```
 
-After uploading files we can access the list of uploaded files using `event.target.files` we can then get the first file since we can process at a time using `e.target.files[0]`. We can also change the state using `setState` setting the originalLink, originalImage, outputFileName and uploadImage state as shown above.
+ `event.target.files` allows you to access a list of uploaded files. We can then get the first file since we process an image at a time using `e.target.files[0]`. To change the state we use `setState` setting the originalLink, originalImage, outputFileName and uploadImage state as shown above.
 
 > URL.createObjectURL() is a static method that creates a string that containing a URL representing the object given in the parameter. 
 
